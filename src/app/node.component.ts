@@ -5,6 +5,7 @@ import {Component, Input} from "@angular/core";
   template: `    
         <div class="line-to"></div>
         <div  myDropTarget (myDrop)="onDrop($event)" [myDraggable]="{data: nodeTree.name}" class="draggable center rect">{{nodeTree.name}}</div>
+        <div *ngIf="nodeTree.children.length" class="line-to-children"></div>
         <div *ngIf="nodeTree.children.length" class="center flex-container ">
           <tree-node *ngFor="let ch of nodeTree.children" [nodeTree]="ch" ></tree-node>
         </div>
@@ -21,34 +22,33 @@ import {Component, Input} from "@angular/core";
         font-size: 15px;
         border-radius: 2px;
         margin: 0 auto;
-        margin-top:60px;
+        margin-top: 15px;
       }
       .rect::before {
         content: "";
         width: calc(50% - 1px);
         position: relative;
-        height: 100px;
+        height: 30px;
         left: calc(50%);
         top: -30px;
         border-right: 1px solid #dadada;
       }
 
-      /*.flex-container::before {*/
-        /*content: "";*/
-        /*width: calc(50% - 1px);*/
-        /*position: relative;*/
-        /*height: 30px;*/
-        /*top: 30px;*/
-        /*left: calc(50%);*/
-        /*border-right: 1px solid #dadada;*/
-      /*}*/
+      .line-to-children::before {
+        content: "";
+        width: calc(50% - 1px);
+        position: relative;
+        height: 100px;
+        left: calc(50%);
+        border-right: 1px solid #dadada;
+      }
       .center {
         justify-content: center;
       }
     .draggable {
       border: 1px solid #ccc;
       padding: 1rem;
-      width: 6rem;
+      width: 1rem;
       cursor: move;
     }
     `],
