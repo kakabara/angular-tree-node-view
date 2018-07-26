@@ -31,8 +31,14 @@ export class DropTargetDirective {
 
   @HostListener('drop', ['$event'])
   onDrop(event) {
-    const data = JSON.stringify(event.dataTransfer.getData('Text'));
-    this.drop.next(data);
+    const data = {
+      child: JSON.parse(event.dataTransfer.getData('child')),
+      parent: this.options['data']
+    };
+    if (data.child.id !== data.parent.id && data.child.parentID !== data.parent.id) {
+      this.drop.next(data);
+    }
+
   }
 }
 

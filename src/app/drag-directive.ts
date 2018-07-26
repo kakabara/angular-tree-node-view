@@ -1,4 +1,4 @@
-import {Directive, HostBinding, HostListener, Input} from "@angular/core";
+import {Directive, EventEmitter, HostBinding, HostListener, Input, Output} from '@angular/core';
 import {DragService} from "./drag-service";
 
 @Directive({
@@ -20,14 +20,16 @@ export class DraggableDirective {
     }
   }
 
+  // @Output() dragStart = new EventEmitter();
+
   private options: DraggableOptions = {};
 
   @HostListener('dragstart', ['$event'])
   onDragStart(event) {
     const { zone = 'zone', data = {} } = this.options;
-
+    // this.dragStart.next(true);
     this.dragService.startDrag(zone);
-    event.dataTransfer.setData('Text', JSON.stringify(data));
+    event.dataTransfer.setData('child', JSON.stringify(data));
   }
 }
 

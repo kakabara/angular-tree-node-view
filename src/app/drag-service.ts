@@ -5,7 +5,7 @@ export class DragService {
   private zone: string;
 
   startDrag(zone: string) {
-    this.zone =zone;
+    this.zone = zone;
   }
 
   accepts(zone: string): boolean {
